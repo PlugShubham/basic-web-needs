@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>  
+.glyphicon{
+font-size:25px;
+color:blue;
+}	
+.form-group{
+margin-left:30%;
+margin-right:30%;
+margin-top:20%;
+} 
+#invali{
+display:none;
+color:red;
+} 
+</style>
+<script>
+function validateForm() {
+    var x = document.forms["sign_in"]["upass"].value;
+	var x1= document.forms["sign_in"]["ucpass"].value;
+    if (x != x1) {
+        //alert("Password and Confirm Password Unmatched ");
+		document.getElementById("invali").style.display = "inline";
+        return false;
+    }
+}
+</script>
+</head>
+<body>
+<div class="form-group">
+<form name="sign_in" method="post" onsubmit="return validateForm()" action="signin.php">
+<table>
+<tr><td><span class="glyphicon glyphicon-user"></span></td><td><input class="form-control input-sm" type="text" placeholder="Name" name="uname" required/></td></tr>
+<tr><td><span class="glyphicon glyphicon-envelope"></span></td><td><input class="form-control input-sm" type="email" placeholder="Email" name="uemail" required/></td></tr>
+<tr><td><span class="glyphicon glyphicon-eye-open"></span></td><td><input class="form-control input-sm" type="password" placeholder="Password" name="upass" required/></td></tr>
+<tr><td><span class="glyphicon glyphicon-briefcase"></span></td><td><input class="form-control input-sm" type="password" placeholder="Confirm Password" name="ucpass" required/></td><td><div id="invali"><p>invalid</p></div></td></tr>
+<tr><td><input class="btn btn-info" type="submit" value="submit"/></td></tr>
+</table>
+</form>
+</div>
+</body>
+</html>
