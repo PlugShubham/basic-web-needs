@@ -21,8 +21,8 @@ color:red;
 </style>
 <script>
 function validateForm() {
-    var x = document.forms["sign_in"]["upass"].value;
-	var x1= document.forms["sign_in"]["ucpass"].value;
+    var x = document.forms["register"]["upass"].value;
+	var x1= document.forms["register"]["ucpass"].value;
     if (x != x1) {
         //alert("Password and Confirm Password Unmatched ");
 		document.getElementById("invali").style.display = "inline";
@@ -33,7 +33,7 @@ function validateForm() {
 </head>
 <body>
 <div class="form-group">
-<form name="sign_in" method="post" onsubmit="return validateForm()" action="signin.php">
+<form name="register" method="post" onsubmit="return validateForm()" action="first.php">
 <table>
 <tr><td><span class="glyphicon glyphicon-user"></span></td><td><input class="form-control input-sm" type="text" placeholder="Name" name="uname" required/></td></tr>
 <tr><td><span class="glyphicon glyphicon-envelope"></span></td><td><input class="form-control input-sm" type="email" placeholder="Email" name="uemail" required/></td></tr>
