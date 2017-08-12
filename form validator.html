@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>my JS example</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>  
+.glyphicon{
+font-size:28px;
+color:blue;
+}	
+.form-group{
+margin-left:30%;
+margin-right:30%;
+margin-top:10%;
+} 
+#invali{
+display:none;
+color:red;
+} 
+#validator_tab{
+	border: 1px solid #fff;
+	margin-left:50%;
+	margin-top:-10%;
+}
+</style>
+<script>
+function emailvalidator() {
+		var email_address=document.forms["register"]["uemail"].value;
+    //var p = document.forms["register"]["upass"].value;
+    //var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+	//var confirm_password= document.forms["register"]["ucpass"].value;
+		if (email_address.indexOf('.') == -1){
+			  document.getElementById("email_gl").style.color = "red";
+			     return false;
+		}
+		else{
+			document.getElementById("email_gl").style.color = "green";
+		}
+}	
+
+function passwordvalidator(){
+	var p = document.forms["register"]["upass"].value;
+	if (p.length < 8) {
+        document.getElementById("password_gl").style.color = "red"; 
+        return false;
+    }
+    else{
+			document.getElementById("password_gl").style.color = "green";
+		}
+    if (p.search(/[a-z]/i) < 0) {
+        //alert("Your password must contain at least one letter.");
+        document.getElementById("password_gl").style.color = "red";
+        return false;
+    }
+    else{
+			document.getElementById("password_gl").style.color = "green";
+		}
+    if (p.search(/[0-9]/) < 0) {
+        //alert("Your password must contain at least one digit."); 
+        document.getElementById("password_gl").style.color = "red";
+        return false;
+    }
+    else{
+			document.getElementById("password_gl").style.color = "green";
+		}
+}	
+		
+function passwordcheck(){
+	
+    var p = document.forms["register"]["upass"].value;
+    //var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+	var confirm_password= document.forms["register"]["ucpass"].value;	 
+    if (p != confirm_password) {
+        //alert("Password and Confirm Password Unmatched ");
+		document.getElementById("cpass_gl").style.color = "red";
+        return false;
+    }
+    else{
+			document.getElementById("cpass_gl").style.color = "green";
+		}
+}
+function submittrue(){
+	var col=document.getElementById("cpass_gl").style.color;
+	if(col == "red"){
+		alert("something went wrong!")
+		return false;
+	}
+}
+</script>
+</head>
+<body>
+<div class="form-group">
+<h1>REGISTER</h1>
+<form name="register" method="post" onsubmit="submittrue()" action="register.php"> 
+<table>
+<tr><td><span class="glyphicon glyphicon-user"></span></td><td><input class="form-control input-sm" type="text" placeholder="Name" name="uname" required/></td></tr>
+<tr><td><span class="glyphicon glyphicon-envelope"></span></td><td><input class="form-control input-sm" onchange="emailvalidator()" type="email" placeholder="Email" name="uemail" required/></td></tr>
+<tr><td><span class="glyphicon glyphicon-eye-open"></span></td><td><input class="form-control input-sm" onchange="passwordvalidator()" type="password" placeholder="Password" name="upass" required/></td></tr>
+<tr><td><span class="glyphicon glyphicon-eye-close"></span></td><td><input class="form-control input-sm" onchange="passwordcheck()" type="password" placeholder="Confirm Password" name="ucpass" required/></td><td><div id="invali"><p>invalid</p></div></td></tr>
+<tr><td><input class="btn btn-info" type="submit" value="submit"/></td></tr>
+</table>
+</form>
+</div>
+<div id="validator_tab">
+	<table>
+		<tr><td><span id="email_gl" class="glyphicon glyphicon-ok"></span></td><td> Enter correct Email</td></tr>
+		<tr><td><span id="password_gl" class="glyphicon glyphicon-ok"></span></td><td> Password must contain 1 special character<br> 1 number and greater then 8 digits.</td></tr>
+		<tr><td><span id="cpass_gl" class="glyphicon glyphicon-ok"></span></td><td> Password and confirm password should match</td></td></tr>
+	</table>
+	
+</div>
+</body>
+</html>
